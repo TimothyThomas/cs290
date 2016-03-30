@@ -1,0 +1,3 @@
+Here is the file for Assignment 1.
+
+This is the first file I have added to my Github repository.
