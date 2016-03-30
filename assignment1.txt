@@ -1,3 +1,6 @@
 Here is the file for Assignment 1.
 
 This is the first file I have added to my Github repository.
+
+This is a change I'm making to the file.
+It consists of this line and the line before it.
