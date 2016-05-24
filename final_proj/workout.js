@@ -1,6 +1,14 @@
 var express = require('express');
 var session = require('express-session');
 var request = require('request');
+var mysql = require('mysql')
+var pool = mysql.createPool({
+    host: 'localhost',
+    //host: '52.36.110.171',
+    user: 'student',
+    password: 'default',
+    database: 'student'
+});
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
@@ -23,6 +31,44 @@ app.get('/',function(req,res,next){
 app.post('/', function(req,res){
     var context = {};
     res.render('workout',context);
+});
+
+
+app.get('/insert', function(req,res,next){
+    var context = {};
+    pool.query("INSERT INTO workouts (name, reps) VALUES (?,?)", ['Bench Press', '10'], function(err,
+    //pool.query("INSERT INTO workouts (name) VALUES (?)", [req.query.c], function(err,
+    //pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES
+       // ('Bench Press', 10, 225, '2016-01-01', 1),
+       // ('Squat', 5, 315, '2016-01-03', 1),
+       // ('Deadlift', 5, 405, '2016-01-05', 1);", [req.query.c], function(err, 
+        result){
+            if(err){
+                next(err);
+                return;
+            }
+            context.results = "Inserted id " + result.insertId;
+            res.render('workout', context);
+    });
+});
+
+
+
+app.get('/reset-table',function(req,res,next){
+  var context = {};
+  pool.query("DROP TABLE IF EXISTS workouts", function(err){ //replace your connection pool with the your variable containing the connection pool
+    var createString = "CREATE TABLE workouts("+
+    "id INT PRIMARY KEY AUTO_INCREMENT,"+
+    "name VARCHAR(255) NOT NULL,"+
+    "reps INT,"+
+    "weight INT,"+
+    "date DATE,"+
+    "lbs BOOLEAN)";
+    pool.query(createString, function(err){
+      context.results = "Table reset";
+      res.render('home',context);
+    })
+  });
 });
 
 
