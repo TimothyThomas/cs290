@@ -43,9 +43,7 @@ app.post('/', function(req,res){
 
 app.get('/insert', function(req,res,next){
     var context = {};
-    pool.query("INSERT INTO workouts (name) VALUES (?)", ['Bench Press'], function(err,
-
-    //pool.query("INSERT INTO workouts (name) VALUES (?)", [req.query.c], function(err,
+    pool.query("INSERT INTO workouts (`name`) VALUES (?)", [req.query.c], function(err,
     //pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES
        // ('Bench Press', 10, 225, '2016-01-01', 1),
        // ('Squat', 5, 315, '2016-01-03', 1),
@@ -55,6 +53,7 @@ app.get('/insert', function(req,res,next){
                 next(err);
                 return;
             }
+            res.render('home', context)
     });
 });
 
