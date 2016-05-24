@@ -44,12 +44,12 @@ app.post('/', function(req,res){
 
 app.get('/insert', function(req,res,next){
     var context = {};
-    pool.query("INSERT INTO workouts (`name`) VALUES (?)", [req.query.c], function(err,
-    //pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES
+    pool.query("INSERT INTO workouts (`name`) VALUES (?)", [req.query.c], 
+       //pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES
        // ('Bench Press', 10, 225, '2016-01-01', 1),
        // ('Squat', 5, 315, '2016-01-03', 1),
        // ('Deadlift', 5, 405, '2016-01-05', 1);", [req.query.c], function(err, 
-        result){
+        function(err, result){
             if(err){
                 next(err);
                 return;
@@ -63,7 +63,7 @@ app.get('/insert', function(req,res,next){
 
 app.get('/reset-table',function(req,res,next){
   var context = {};
-  pool.query("DROP TABLE IF EXISTS workouts", function(err){ //replace your connection pool with the your variable containing the connection pool
+  pool.query("DROP TABLE IF EXISTS workouts", function(err){ 
     var createString = "CREATE TABLE workouts("+
     "id INT PRIMARY KEY AUTO_INCREMENT,"+
     "name VARCHAR(255) NOT NULL,"+
