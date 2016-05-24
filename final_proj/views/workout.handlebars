@@ -1,6 +1,6 @@
 <h1>Welcome To Your Workout Tracker!</h1>
 
-{{#if exercises}}
+{{#if results}}
 <table>
    <caption>Completed Exercises</caption>
    <thead>
@@ -11,7 +11,7 @@
          <th> Date 
          <th> lbs
    <tbody>
-     {{#each entry}}
+     {{#each result}}
      <tr>
        <td> this.name
        <td> this.reps
