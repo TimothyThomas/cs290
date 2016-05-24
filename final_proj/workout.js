@@ -37,18 +37,27 @@ app.post('/', function(req,res){
 app.get('/insert', function(req,res,next){
     var context = {};
     pool.query("INSERT INTO workouts (name, reps) VALUES (?,?)", ['Bench Press', '10'], function(err,
+
     //pool.query("INSERT INTO workouts (name) VALUES (?)", [req.query.c], function(err,
     //pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES
        // ('Bench Press', 10, 225, '2016-01-01', 1),
        // ('Squat', 5, 315, '2016-01-03', 1),
        // ('Deadlift', 5, 405, '2016-01-05', 1);", [req.query.c], function(err, 
+       
         result){
             if(err){
                 next(err);
                 return;
             }
-            context.results = "Inserted id " + result.insertId;
-            res.render('workout', context);
+
+            pool.query('SELECT * from workouts', function(err, rows, fields){
+                if(err){
+                    next(err);
+                    return;
+                }
+                context.results = JSON.stringify(rows);
+                res.render('workout', context);
+            });
     });
 });
 
