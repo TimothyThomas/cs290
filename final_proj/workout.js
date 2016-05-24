@@ -53,6 +53,7 @@ app.get('/insert', function(req,res,next){
                 next(err);
                 return;
             }
+            context.results = "Inserte id " + result.insertId;
             res.render('home', context)
     });
 });
