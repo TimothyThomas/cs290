@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="UTF-8">
+   <title>title</title>
+   <!--   <link rel="stylesheet" href="stylesheet.css" type="text/css"> -->
+ </head>
+ <body>
+    <script>
+    document.body.addEventListener("click", function(event) {
+              if (event.target.nodeName == "BUTTON")
+                    console.log("Clicked", event.target.textContent);
+                      });
+    </script>
+    <div id="wrapper">
+    <div data-tabname="one">Tab one</div>
+    <div data-tabname="two">Tab two</div>
+    <div data-tabname="three">Tab three</div>
+    </div>
+    <script>
+    function asTabs(node) {
+        for (i = 0; i < node.children.length; i++) {
+            tab = node.children[i];
+            button = document.createElement('button');
+            button.textContent = tab.textContent;
+            tab.appendChild(button);
+        }
+    }
+    asTabs(document.querySelector("#wrapper"));
+    </script>
+
+ </body>
+</html>
+
+

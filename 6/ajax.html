@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Ajax Assignment</title>
+    <script src="ajax.js"></script>
+  </head>
+  <body>
+    <form>
+        <fieldset>
+            <legend>Submit either a city or zip code.</legend>
+            <label for="city">City: </label>
+            <input type="text" name="q" id="city" size="30" maxlength="30"> 
+            <input type="submit" id="citySubmit">
+            <p></p>
+            <label for="zip">Zip Code: </label>
+            <input type="text" name="zip" id="zip" size="5" maxlength="5">
+            <input type="submit" id="zipSubmit">
+        </fieldset>
+    </form>
+    <div>
+        <p>City: <span id="chosen_city"></span>
+        <p>Current temperature: <span id="temp"></span></p>
+        <p>Currenty humidity: <span id="humidity"></span></p>
+    </div>
+    </br>
+    </br>
+    <form>
+        <fieldset>
+            <legend>Send your name and favorite color.</legend>
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="username" size="30" maxlength="30"> 
+            <p></p>
+            <label for="color">Favorite Color: </label>
+            <input type="text" name="color" id="color" size="30" maxlength="30">
+            <input type="submit" id="httpBinSubmit">
+        </fieldset>
+    </form>
+    <div>
+        <p>Received Name: <span id="receivedName"></span></p>
+        <p>Received Color: <span id="receivedColor"></span></p>
+    </div>
+    <form>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<h1>POST Request Received</h1>
+<div>The following parameters and values were sent in the URL query string: </div>
+<ul>
+  {{#each qList}}
+    <li>{{this.name}}: {{this.value}}
+  {{/each}}
+</ul>
+
+<div>The following parameters and values were sent in the request body: </div>
+<ul>
+  {{#each bodyList}}
+    <li>{{this.name}}: {{this.value}}
+  {{/each}}
+</ul>

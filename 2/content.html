@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="UTF-8">
+   <title>title</title>
+   <link rel="stylesheet" href="style.css" type="text/css">
+ </head>
+ <body>
+  <h1>CS 290, Spring 2016 -- HTML/CSS Assignment -- Tim Thomas</h1>
+  <h2>A Table</h2> 
+  <table>
+      <caption>Programming Languages Used in Each Class</caption>
+   <thead>
+     <tr>
+         <th>
+         <th> Java 
+         <th> C++
+         <th> x86 Assembly
+         <th> Javascript
+         <th> Python
+   <tbody>
+    <tr>
+     <th>Intro Courses
+     <td> no
+     <td> yes
+     <td> no
+     <td> no
+     <td> no
+    <tr>
+     <th>Architecture and Assembly
+     <td> no
+     <td> no
+     <td> yes
+     <td> no
+     <td> no
+    <tr>
+     <th>Web Development
+     <td> no
+     <td> no
+     <td> no
+     <td> yes
+     <td> maybe
+    <tr>
+     <th>Algorithms
+     <td> no
+     <td> yes
+     <td> no
+     <td> no
+     <td> yes
+    <tr>
+     <th>Usability
+     <td> no
+     <td> no
+     <td> no
+     <td> no
+     <td> no
+   </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">Footer 1
+            <td colspan="4">Footer 2
+    </tfoot>
+  </table>
+  <br />
+  <h2>A List</h2> 
+  <p>A list of things:</>
+  <ul>
+      <li>Thing 1</li>
+      <li>Thing 2</li>
+      <li>Thing 3</li>
+  </ul>
+  <br />
+  <h2>A Pink and Blue div</h2> 
+   <div class="outer-content"> 
+     <div class="inner-content">Some Inner Content</div>
+   </div>
+  <br />
+  <h2>A Form That Submits via a POST</h2> 
+  <form action="http://classes.engr.oregonstate.edu/eecs/winter2015/cs290-400/tools/class-content/form_tests/check_request.php" method="post">
+    <fieldset>
+        <legend>Enter Data for a POST:</legend>
+    <p>
+        <label>Input Some Text:
+            <input type="text" name="text_input" size="30" maxlength="100">
+        </label>
+        <br />
+    </p>
+    <p>
+        <label>Input A Number:
+            <input type="number" name="numerical_input", step="0.01">
+        </label>
+        <br />
+    </p>
+    <p>
+        <label>Input Your Password:
+            <input type="password" name="password_input" size="30" maxlength="100">
+        </label>
+        <br />
+    </p>
+    <p>What's your favorite candy?
+        <br />
+        <label>
+            <input type="radio" name="candy" value="Snickers" />Snickers</label>
+        <label>
+            <input type="radio" name="candy" value="Skittles" />Skittles</label>
+        <label>
+            <input type="radio" name="candy" value="Mentos" />Mentos</label>
+    </p>
+    <input type="submit" value="Submit via post" />
+    </fieldset>
+  </form>         
+  <br />
+  <h2>A Form That Submits via a GET</h2> 
+  <form
+      action="http://classes.engr.oregonstate.edu/eecs/winter2015/cs290-400/tools/class-content/form_tests/check_request.php" method="get">
+    <fieldset>
+        <legend>Enter Data for a GET:</legend>
+    <p>
+        <label>Input Some Text:
+            <input type="text" name="text_input" size="30" maxlength="100">
+        </label>
+        <br />
+    </p>
+    <p>
+        <label>Input A Number:
+            <input type="number" name="numerical_input", step="0.01">
+        </label>
+        <br />
+    </p>
+    <p>
+        <label>Input Your Password:
+            <input type="password" name="password_input" size="30" maxlength="100">
+        </label>
+        <br />
+    </p>
+    <p>What's your favorite candy?
+        <br />
+        <label>
+            <input type="radio" name="candy" value="Snickers" />Snickers</label>
+        <label>
+            <input type="radio" name="candy" value="Skittles" />Skittles</label>
+        <label>
+            <input type="radio" name="candy" value="Mentos" />Mentos</label>
+    </p>
+    <input type="submit" value="Submit via get" />
+    </fieldset>
+  </form>         
+ </body>
+ </body>
+</html>
