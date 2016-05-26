@@ -4,10 +4,12 @@ var request = require('request');
 var mysql = require('mysql')
 var pool = mysql.createPool({
     host: 'localhost',
-    //host: '52.36.110.171',
-    user: 'student',
-    password: 'default',
-    database: 'student'
+    user: 'root',
+    password: '10%percent',
+    database: 'mysql'
+    //user: 'student',
+    //password: 'default',
+    //database: 'student'
 });
 
 var app = express();
@@ -17,21 +19,26 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({secret:'SuperSecretPassword'}));
+app.use(express.static('public'));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
-app.get('/',function(req,res,next){
+app.get('/', function(req,res){
+    res.render('home');
+});
+
+
+app.get('/getall',function(req,res,next){
     var context = {};
     pool.query('SELECT * from workouts', function(err, rows, fields){
         if(err){
             next(err);
             return;
         }
-        //context.results = JSON.stringify(rows);
-        context.results = JSON.parse(rows);
-        res.render('workout', context);
+        res.type('text/plain');
+        res.send(rows);
     });
 });
 
