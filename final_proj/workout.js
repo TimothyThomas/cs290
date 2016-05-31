@@ -1,5 +1,4 @@
 var express = require('express');
-var session = require('express-session');
 var request = require('request');
 var mysql = require('mysql')
 var pool = mysql.createPool({
@@ -18,7 +17,6 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({secret:'SuperSecretPassword'}));
 app.use(express.static('public'));
 
 app.engine('handlebars', handlebars.engine);
@@ -30,8 +28,24 @@ app.get('/', function(req,res){
 });
 
 
+app.post('/delete', function(req,res) {
+    pool.query('DELETE FROM workouts WHERE id = (?)', [req.body.id], function(err, result){
+        if(err) {
+            next(err);
+            return;
+        }
+        pool.query("SELECT * from workouts", function(err, rows, fields){
+            if(err){
+                next(err);
+                return;
+            }
+            res.type('text/plain');
+            res.send(rows);
+        });
+    });
+});
+
 app.get('/getall',function(req,res,next){
-    var context = {};
     pool.query('SELECT * from workouts', function(err, rows, fields){
         if(err){
             next(err);
@@ -42,30 +56,35 @@ app.get('/getall',function(req,res,next){
     });
 });
 
-
-app.post('/', function(req,res){
-    var context = {};
-    res.render('workout',context);
+app.post('/insert', function(req,res,next){
+    pool.query("INSERT INTO workouts (date, name, reps, weight, lbs) VALUES (?,?,?,?,?)", 
+        [req.body.date, req.body.name, req.body.reps, req.body.weight, req.body.units], function(err, result) {
+        if(err) {
+            next(err);
+            return;
+        }
+        pool.query("SELECT * from workouts", function(err, rows, fields){
+            if(err){
+                next(err);
+                return;
+            }
+            res.type('text/plain');
+            res.send(rows);
+        });
+    });
 });
 
-
 app.get('/insert', function(req,res,next){
-    var context = {};
-    pool.query("INSERT INTO workouts (`name`) VALUES (?)", [req.query.c], 
-       //pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES
-       // ('Bench Press', 10, 225, '2016-01-01', 1),
-       // ('Squat', 5, 315, '2016-01-03', 1),
-       // ('Deadlift', 5, 405, '2016-01-05', 1);", [req.query.c], function(err, 
-        function(err, result){
+    pool.query("INSERT INTO workouts (date, name, reps, weight) VALUES (?,?,?,?)", 
+       [req.query.date, req.query.name, req.query.reps, req.query.weight], function(err, result) {
             if(err){
                 next(err);
                 return;
             }
             context.results = "Inserted id " + result.insertId;
-            res.render('home', context)
+            res.render('home')
     });
 });
-
 
 
 app.get('/reset-table',function(req,res,next){
