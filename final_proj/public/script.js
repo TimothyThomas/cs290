@@ -52,8 +52,10 @@ function buildTable(data) {
       f.appendChild(hidden);
 
       var edit = document.createElement('input');
-      edit.setAttribute('type', "submit");
+      edit.setAttribute('type', "button");
+      edit.setAttribute('name', "Delete");
       edit.setAttribute('value', "Edit");
+      edit.setAttribute('onclick', 'editRow(this)')  // from Piazza cid=341
       f.appendChild(edit);
 
       row.style.border = "2px solid black";
@@ -67,7 +69,7 @@ function buildTable(data) {
 function deleteRow(dltButton) {
     var req = new XMLHttpRequest();
     var payload = {};
-    payload.id = dltButton.nextSibling.value;
+    payload.id = dltButton.nextElementSibling.value;
     req.open("POST", "http://localhost:3000/delete", true);
     req.setRequestHeader('Content-type', 'application/json');
     req.addEventListener('load', function(){
@@ -83,6 +85,12 @@ function deleteRow(dltButton) {
 };
 
 
+function editRow(editButton) {
+    var id = editButton.previousElementSibling.value;
+    window.location="http://localhost:3000/edit?id=" + id
+}
+
+
 function bindButtons(){
     document.getElementById('addExercise').addEventListener('click', function(event){
         var req = new XMLHttpRequest();
@@ -91,8 +99,7 @@ function bindButtons(){
         payload.name = document.getElementById('name').value;
         payload.weight = document.getElementById('weight').value;
         payload.reps = document.getElementById('reps').value;
-        // the following code to handle radio buttons is from stack overflow
-        // question 9618504
+        // the following code to handle radio buttons is from stack overflow question 9618504
         var radios  = document.getElementsByName('units');
         for (var i = 0; i < radios.length; i++) {
             if (radios[i].checked) {

@@ -34,7 +34,8 @@ app.post('/delete', function(req,res) {
             next(err);
             return;
         }
-        pool.query("SELECT * from workouts", function(err, rows, fields){
+        //pool.query("SELECT * from workouts", function(err, rows, fields){
+        pool.query('SELECT id,name,reps,weight,DATE_FORMAT(date, "%m-%d-%Y") AS date,lbs FROM workouts', function(err, rows, fields){
             if(err){
                 next(err);
                 return;
@@ -45,8 +46,39 @@ app.post('/delete', function(req,res) {
     });
 });
 
+app.get('/edit', function(req,res,next) {
+    //pool.query('SELECT * FROM workouts WHERE id=(?)', 
+    pool.query('SELECT id,name,reps,weight,DATE_FORMAT(date, "%Y-%m-%d") AS date,lbs FROM workouts WHERE id=(?)', 
+        [req.query.id], function(err, rows, fields){
+            if(err) {
+                next(err);
+                return;
+            }
+        context = rows[0]; 
+        console.log(context.date);
+        res.render('edit', context);
+        });
+});
+
+app.get('/update', function(req,res,next) {
+    var context = {};
+    pool.query('UPDATE workouts SET date=?, name=?, reps=?, weight=?, lbs=? WHERE id=?', 
+        [req.query.date, req.query.name, req.query.reps, req.query.weight, req.query.units, req.query.id], 
+        function(err, result){
+            if(err) {
+                next(err);
+                return;
+            }
+        context.results = "Updated " + result.changedRows + " rows.";
+        console.log(context.results);
+        res.render('home');
+        });
+});
+
+
 app.get('/getall',function(req,res,next){
-    pool.query('SELECT * from workouts', function(err, rows, fields){
+    //pool.query('SELECT * from workouts', function(err, rows, fields){
+    pool.query('SELECT id,name,reps,weight,DATE_FORMAT(date, "%m-%d-%Y") AS date,lbs FROM workouts', function(err, rows, fields){
         if(err){
             next(err);
             return;
@@ -58,12 +90,14 @@ app.get('/getall',function(req,res,next){
 
 app.post('/insert', function(req,res,next){
     pool.query("INSERT INTO workouts (date, name, reps, weight, lbs) VALUES (?,?,?,?,?)", 
-        [req.body.date, req.body.name, req.body.reps, req.body.weight, req.body.units], function(err, result) {
+        [req.body.date, req.body.name, req.body.reps, req.body.weight, req.body.units], 
+        function(err, result) {
         if(err) {
             next(err);
             return;
         }
-        pool.query("SELECT * from workouts", function(err, rows, fields){
+        //pool.query("SELECT * from workouts", function(err, rows, fields){
+        pool.query('SELECT id,name,reps,weight,DATE_FORMAT(date, "%m-%d-%Y") AS date,lbs FROM workouts', function(err, rows, fields){
             if(err){
                 next(err);
                 return;
@@ -71,18 +105,6 @@ app.post('/insert', function(req,res,next){
             res.type('text/plain');
             res.send(rows);
         });
-    });
-});
-
-app.get('/insert', function(req,res,next){
-    pool.query("INSERT INTO workouts (date, name, reps, weight) VALUES (?,?,?,?)", 
-       [req.query.date, req.query.name, req.query.reps, req.query.weight], function(err, result) {
-            if(err){
-                next(err);
-                return;
-            }
-            context.results = "Inserted id " + result.insertId;
-            res.render('home')
     });
 });
 
