@@ -50,7 +50,6 @@ app.get('/edit', function(req,res,next) {
                 return;
             }
         context = rows[0]; 
-        console.log(context.date);
         res.render('edit', context);
         });
 });
@@ -64,8 +63,6 @@ app.get('/update', function(req,res,next) {
                 next(err);
                 return;
             }
-        context.results = "Updated " + result.changedRows + " rows.";
-        console.log(context.results);
         res.render('home');
         });
 });
