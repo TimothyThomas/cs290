@@ -100,6 +100,10 @@ function bindButtons(){
         var payload = {};
         payload.date = document.getElementById('date').value;
         payload.name = document.getElementById('name').value;
+        if (payload.name == "") {
+            alert("Please enter the exercise name and try again.");
+            return;
+        }
         payload.weight = document.getElementById('weight').value;
         payload.reps = document.getElementById('reps').value;
         // the following code to handle radio buttons is from stack overflow question 9618504

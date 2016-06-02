@@ -17,10 +17,17 @@
     <p>
     <label for="weight">Weight:</label>
     <input type="number" name="weight" id="weight" value="{{this.weight}}">
-    <label>lbs</label>
-    <input type="radio" name="units" value="1" checked="true">
-    <label>kilos</label>
-    <input type="radio" name="units" value="0">
+    {{#if lbs}}
+        <label>lbs</label>
+        <input type="radio" name="units" value="1" checked="true">
+        <label>kilos</label>
+        <input type="radio" name="units" value="0">
+    {{else}}
+        <label>lbs</label>
+        <input type="radio" name="units" value="1">
+        <label>kilos</label>
+        <input type="radio" name="units" value="0" checked="true">
+    {{/if}}
     </p>
     <input type="hidden" name="id" value="{{this.id}}">
     <p>

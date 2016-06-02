@@ -1,3 +1,0 @@
-Why does it allow entries that don't specify a name?
-
-Fix radio buttons on edit form so the correct one is checked.

@@ -31,7 +31,6 @@ app.post('/delete', function(req,res) {
             next(err);
             return;
         }
-        //pool.query("SELECT * from workouts", function(err, rows, fields){
         pool.query('SELECT id,name,reps,weight,DATE_FORMAT(date, "%m-%d-%Y") AS date,lbs FROM workouts', function(err, rows, fields){
             if(err){
                 next(err);
@@ -44,7 +43,6 @@ app.post('/delete', function(req,res) {
 });
 
 app.get('/edit', function(req,res,next) {
-    //pool.query('SELECT * FROM workouts WHERE id=(?)', 
     pool.query('SELECT id,name,reps,weight,DATE_FORMAT(date, "%Y-%m-%d") AS date,lbs FROM workouts WHERE id=(?)', 
         [req.query.id], function(err, rows, fields){
             if(err) {
@@ -74,7 +72,6 @@ app.get('/update', function(req,res,next) {
 
 
 app.get('/getall',function(req,res,next){
-    //pool.query('SELECT * from workouts', function(err, rows, fields){
     pool.query('SELECT id,name,reps,weight,DATE_FORMAT(date, "%m-%d-%Y") AS date,lbs FROM workouts', function(err, rows, fields){
         if(err){
             next(err);
@@ -93,7 +90,6 @@ app.post('/insert', function(req,res,next){
             next(err);
             return;
         }
-        //pool.query("SELECT * from workouts", function(err, rows, fields){
         pool.query('SELECT id,name,reps,weight,DATE_FORMAT(date, "%m-%d-%Y") AS date,lbs FROM workouts', function(err, rows, fields){
             if(err){
                 next(err);
