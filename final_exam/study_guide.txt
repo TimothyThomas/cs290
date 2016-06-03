@@ -1,0 +1,148 @@
+Double-sided hand written 8.5 x 11 page of notes.
+Exam is all multiple choice.
+
+HTML tags:  
+==========
+html - outer tags for doc
+head - metadata 
+link - link to CSS <link rel="stylesheet" href="stylesheet.css" type="text/css"
+body - content
+script - javascript file
+a - anchor, links to other pages <a href="http://foo.com">a link to foo</a>
+ul - unordered list
+li - list item
+p - paragraph
+section - used to group related content. Doesn't do much visually.
+div - use when no other element makes sense. Doesn't do much visually.
+span - groups inline-elements (provides no visual change by itself) 
+h[1-4] - headers (block level) 
+form - contains content and user inputs (can't contain other forms) 
+    form attributes:
+        action - specifies where form should be sent
+        method - get or post
+input - elements within a form where user enters data. must have type and name attributes. 
+    type attribute: type of input
+    name attribute: name part of the name=value sent to server for the input
+table - open/close a table
+tr - table row (contains either td or th)
+th - header cell
+td - data cell
+thead - table header, contains rows that represent header
+tbody - table body, contains rows with data 
+Example:
+    <table>
+      <caption>Characteristics with positive and negative sides</caption>
+      <thead>
+       <tr>
+        <th> Characteristic
+        <th> Negative
+        <th> Positive
+      <tbody>
+       <tr>
+        <th> Mood
+        <td> Sad
+        <td> Happy
+       <tr>
+        <th> Grade
+        <td> Failing
+        <td> Passing
+    </table>
+
+Example HTML Skeleton
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>title</title>
+  <link rel="stylesheet" href="stylesheet.css" type="text/css"
+ </head>
+ <body>
+ </body>
+</html>
+
+CSS Properties:
+===============
+background-color - background color of an element 
+border-style - 
+border-color - border color of an element 
+border-width
+padding - space between edge of box and its content
+margin - how far one box is from another
+width - width:50% will make an element half as wide as its parent
+
+CSS Selectors:
+==============
+Ex CSS rule:  (selector comes before {}, property-value pairs are inside {})
+
+    a.homepage:link, a.homepage:visited{
+        color: #fff;
+        background: #444;
+    }
+
+ID selector:  targets the single element with matching ID
+Class selector: targets all elements of a given class
+Type selectors: select elements based on type and relationship to other elements:
+    basic type:  specify an element name directly.  p will target all paragraph elements
+    descendent selector:  targets all elements of type 'x' which are descendet of type y
+                          Syntax: y x
+                          So 'nav ul' will apply a style to all ul
+                          elements whose direct parent is a nav element.
+    child selector: targets all elements of type x which are direct children of type y.
+                    Syntax: y>x
+    adjacent sibling: target all of element type x  which is at same level on tree and
+                      immediately after element of type y.
+                      y+x
+    general sibling: like adjacent sibling but does not need to immediately follow.
+                     Syntax: y~x
+
+
+Key Questions From Modules
+==========================
+
+Web Overview
+------------
+What is a client? What is a server?  Client asks for something.  Server serves it. 
+Generally speaking, what is the life-cycle of a page?  
+    When can client modify it?  In between requests.
+    When can server modify it?  While processing a request 
+    1. User clicks a link.
+    2. Browser sends request.
+    3. Server responds to request.
+    4. Client receives response.
+    5. Client redners the page.
+Why do we need to have code both on client and sever?
+How are structure, layout and logic separated?  Why would we want to do this?
+What is HTTP?  What are the core pieces of an HTTP transaction? 
+    HyperText Transfer Protocol.  2 parts:  request and response.
+    Request has headers (always) and body (often blank).
+    GET: query string is in URL.
+    POST: query string is in the request body.
+     
+HTML and CSS
+--------------
+What is purpose of HTML?  Organize, describe and give meaning to data. Use tables
+    only for tabular data, not to create complicated layouts.
+What is purpose of CSS?  Define look of a page.
+Where should classes and ids be used?  to help with CSS.
+
+
+
+
+Homework
+=========
+
+
+Activities 
+============
+
+
+Definitely will see:
+====================
+DOM Manipulation
+Ajax
+asynchronous calls
+node.js:  
+    get/post handlers using sessions and a template
+    NOT including modules, setting ports or running the server
+
+Java
