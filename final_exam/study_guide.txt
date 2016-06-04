@@ -125,7 +125,39 @@ What is purpose of HTML?  Organize, describe and give meaning to data. Use table
 What is purpose of CSS?  Define look of a page.
 Where should classes and ids be used?  to help with CSS.
 
+Javascript
+-----------
+What is dynamically typed? It does not check types statically; only when code is run.
+What is an interpreted language? Not compiled, interpreted on the fly.
+Where can JavaScript be run?  Node.js interpreter, browser (inside an html doc)
+What are the primitive types in JS? number, string, boolean, undefined, null (object)
+If something is not a primitive in JS, what is it?  object or function
+Is the FUNCTION keyword needed to create a callable function? YES.  What is its significance?
+    Functions are HOISTED to the top, so they can be called before being declared.
+    UNLESS a function is assigned to a variable, then it is not hoisted and can't be
+    called prior to being created.
+How are functions defined in JS?  
+    function callSquare(x) { 
+        return x * x;
+    }
+    OR  
+    var square = function(x) {
+            return x * x;
+    }
+What is JSON? And what is its relationship to objects? Very similr but keys in JSON must
+always have quotes.  Can't have function in JSON notation, but you can in JS objects.
+What tools can we use to debug JS? JSFiddle, browser.
 
+JS Functions and Objects
+------------------------
+When a function is returned from another function what variables does it have access to?
+What are some use cases for passing functions other functions?
+What are the differences for using the basis object notation vs an object constructor?
+What is the prototype chain? When is it used?
+
+Closure:  when a function is defined within another function a closure is generated.  It
+stores all the contents of that parent function more permanently so they can still be
+referenced by the functions defined within.
 
 
 Homework
